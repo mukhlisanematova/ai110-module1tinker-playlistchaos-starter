@@ -186,14 +186,15 @@ def default_songs():
 def profile_sidebar():
     """Render and update the user profile."""
     st.sidebar.header("Mood profile")
-
     profile = st.session_state.profile
 
+    # Name Input
     profile["name"] = st.sidebar.text_input(
         "Profile name",
         value=str(profile.get("name", "")),
     )
 
+    # Energy sliders
     col1, col2 = st.sidebar.columns(2)
     with col1:
         profile["hype_min_energy"] = st.sidebar.slider(
@@ -210,6 +211,7 @@ def profile_sidebar():
             value=int(profile.get("chill_max_energy", 3)),
         )
 
+    # Genre and mixed playlist options
     profile["favorite_genre"] = st.sidebar.selectbox(
         "Favorite genre",
         options=["rock", "lofi", "pop", "jazz", "electronic", "ambient", "other"],
